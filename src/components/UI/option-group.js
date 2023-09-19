@@ -3,25 +3,34 @@ import Input from "./input";
 
 const OptionGroup = ({ filter, onChangePeriod }) => {
   const [selectedOption, setSelectedOption] = useState("alltime");
+  const [fromValue, setFromValue] = useState("");
+  const [toValue, setToValue] = useState("");
 
   const handleOptionChange = (value) => {
     setSelectedOption(value);
-    onChangePeriod(value);
+    onChangePeriod({
+      type: "PERIOD",
+      value,
+    });
   };
 
   const onChangeFromDate = (from) => {
+    setFromValue(from);
     onChangePeriod({
       type: "PERIOD",
       value: "custom",
       from,
+      to: toValue,
     });
   };
 
   const onChangeToDate = (to) => {
+    to < fromValue ? setToValue(fromValue) : setToValue(to);
     onChangePeriod({
       type: "PERIOD",
       value: "custom",
-      to,
+      from: fromValue,
+      to: to,
     });
   };
 
@@ -42,15 +51,13 @@ const OptionGroup = ({ filter, onChangePeriod }) => {
                 className="h-4 w-4 border-gray-300 text-secondary focus:ring-primary"
               />
             </div>
-            <div className="ml-3 text-2xl leading-6">
-              <label
-                htmlFor={option.value}
-                className="font-medium text-gray-900"
-              >
-                {option.label}
-              </label>
+            <label htmlFor={option.value} className="ml-3 text-2xl leading-6">
+              <span className="font-medium text-gray-900">{option.label}</span>
               {option.value !== "custom" ? (
-                <p id={`${option.value}-description`} className="text-gray-500 text-lg">
+                <p
+                  id={`${option.value}-description`}
+                  className="text-gray-500 text-lg"
+                >
                   {option.description}
                 </p>
               ) : (
@@ -60,21 +67,21 @@ const OptionGroup = ({ filter, onChangePeriod }) => {
                     <Input
                       type="date"
                       placeholder="Month"
-                      // value={fromDateValue}
+                      value={fromValue}
                       onChange={(value) => onChangeFromDate(value)}
                     />
                     <div className="text-xl">To</div>
                     <Input
                       type="date"
                       placeholder="Year"
-                      // value={toDateValue}
+                      value={toValue}
                       onChange={(value) => onChangeToDate(value)}
                       pattern="[0-9]{4}-[0-9]{2}"
                     />
                   </>
                 )
               )}
-            </div>
+            </label>
           </div>
         ))}
       </div>

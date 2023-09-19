@@ -7,7 +7,6 @@ import FilterPeriod from "./filter-period";
 const LeaderboardFiltersDesktop = ({
   countryValue,
   spotValue,
-  filtersReducer,
   onChangePeriod,
   onChangeCountryValue,
   onChangeSpotValue,

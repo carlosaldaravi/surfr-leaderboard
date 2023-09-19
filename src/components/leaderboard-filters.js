@@ -33,6 +33,7 @@ const LeaderboardFilters = () => {
   useEffect(() => {}, [leaderboardState]);
 
   useEffect(() => {
+    console.log("filtersState: ", filtersState);
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtersState]);
@@ -47,13 +48,17 @@ const LeaderboardFilters = () => {
       loading: true,
     });
     try {
-      const url =
+      let url =
         SURFR_URL +
         leaderboardState.board +
         "/" +
         filtersState.period.value +
         "/0?accesstoken=" +
         SURFR_ACCESS_TOKEN;
+      if (filtersState.period.value === "custom") {
+        url +=
+          "&from=" + filtersState.period.from + "&to=" + filtersState.period.to;
+      }
       const response = await fetch(url);
       const data = await response.json();
       dispatchLeaderboard({
@@ -73,9 +78,7 @@ const LeaderboardFilters = () => {
     if (period === "custom") return;
     dispatchFilters({
       type: "PERIOD",
-      period: {
-        value: period,
-      },
+      period: period,
     });
   };
 
