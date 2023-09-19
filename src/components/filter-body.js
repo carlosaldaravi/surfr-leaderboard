@@ -4,7 +4,7 @@ const FilterBody = ({ children }) => {
   return (
     <Disclosure.Panel className="pt-6">
       <div className="space-y-4">
-        aaaa{children}
+        {children}
       </div>
     </Disclosure.Panel>
   );

@@ -1,4 +1,4 @@
-export const filters = [
+export const filtersCheckbox = [
   {
     id: "board",
     name: "Board Type",

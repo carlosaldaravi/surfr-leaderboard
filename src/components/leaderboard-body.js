@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LeaderboardRider from "./leaderboard-rider";
 
-const LeaderboardBody = ({ leaderboard }) => {
+const LeaderboardBody = ({ leaderboard, loading }) => {
   const [actualLeaderboard, setActualLeaderboard] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const LeaderboardBody = ({ leaderboard }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [leaderboard.loading]);
 
-  return actualLeaderboard.length > 0 ? (
+  return !loading && actualLeaderboard.length > 0 ? (
     <ol className="bg-primary">
       {actualLeaderboard &&
         actualLeaderboard.map((rider, index) => (

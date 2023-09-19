@@ -5,7 +5,7 @@ import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 import Input from "./UI/input";
 import Filter from "./filter";
 import FilterLocation from "./filter-location";
-import { filters } from "../data/filters";
+import { filtersCheckbox } from "../data/filters-checkbox";
 
 const LeaderboardFiltersMobile = ({
   mobileFiltersOpen,
@@ -89,7 +89,7 @@ const LeaderboardFiltersMobile = ({
                   />
                 </Filter>
 
-                {filters.map((section) => (
+                {filtersCheckbox.map((section) => (
                   <Disclosure
                     as="div"
                     key={section.id}

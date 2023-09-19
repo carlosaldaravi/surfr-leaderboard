@@ -15,6 +15,7 @@ import {
 } from "../reducers/filtersReducer";
 
 const LeaderboardFilters = () => {
+  const [loading, setLoading] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [countryValue, setCountryValue] = useState("");
   const [spotValue, setSpotValue] = useState("");
@@ -34,7 +35,11 @@ const LeaderboardFilters = () => {
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [leaderboardState.board]);
+  }, [filtersState]);
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [leaderboardState.board, filtersState]);
 
   const fetchData = async () => {
     dispatchLeaderboard({
@@ -42,12 +47,14 @@ const LeaderboardFilters = () => {
       loading: true,
     });
     try {
-      const response = await fetch(
+      const url =
         SURFR_URL +
-          leaderboardState.board +
-          "/alltime/0?accesstoken=" +
-          SURFR_ACCESS_TOKEN
-      );
+        leaderboardState.board +
+        "/" +
+        filtersState.period.value +
+        "/0?accesstoken=" +
+        SURFR_ACCESS_TOKEN;
+      const response = await fetch(url);
       const data = await response.json();
       dispatchLeaderboard({
         type: "LEADERBOARD",
@@ -55,9 +62,21 @@ const LeaderboardFilters = () => {
         board: leaderboardState.board,
         lastBoard: leaderboardState.board,
       });
+      setLoading(false);
     } catch (error) {
       console.error("Error al obtener los datos:", error);
     }
+  };
+
+  const onChangePeriodHandler = (period) => {
+    setLoading(true);
+    if (period === "custom") return;
+    dispatchFilters({
+      type: "PERIOD",
+      period: {
+        value: period,
+      },
+    });
   };
 
   return (
@@ -94,10 +113,7 @@ const LeaderboardFilters = () => {
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
             {/* Filters */}
             <LeaderboardFiltersDesktop
-              onChangeFromDate={(value) => setFromDateValue(value)}
-              onChangeToDate={(value) => setToDateValue(value)}
-              fromDateValue={fromDateValue}
-              toDateValue={toDateValue}
+              onChangePeriod={(period) => onChangePeriodHandler(period)}
               countryValue={countryValue}
               spotValue={spotValue}
               onChangeCountryValue={(value) => setCountryValue(value)}
@@ -106,7 +122,7 @@ const LeaderboardFilters = () => {
 
             {/* Leaderboard grid */}
             <div className="lg:col-span-3">
-              <Leaderboard leaderboard={leaderboardState} />
+              <Leaderboard leaderboard={leaderboardState} loading={loading} />
             </div>
           </div>
         </section>

@@ -1,15 +1,14 @@
 import Input from "./UI/input";
 import Filter from "./filter";
 import Checkboxs from "./UI/checkboxs";
-import { filters } from "../data/filters";
+import { filtersCheckbox } from "../data/filters-checkbox";
+import FilterPeriod from "./filter-period";
 
 const LeaderboardFiltersDesktop = ({
   countryValue,
   spotValue,
-  fromDateValue,
-  toDateValue,
-  onChangeFromDate,
-  onChangeToDate,
+  filtersReducer,
+  onChangePeriod,
   onChangeCountryValue,
   onChangeSpotValue,
 }) => {
@@ -28,25 +27,8 @@ const LeaderboardFiltersDesktop = ({
           onChange={(value) => onChangeSpotValue(value)}
         />
       </Filter>
-      <Filter name="Dates">
-        <div className="text-xl">From</div>
-        <Input
-          type="date"
-          placeholder="Month"
-          value={fromDateValue}
-          onChange={(value) => onChangeFromDate(value)}
-        />
-        <div className="text-xl">To</div>
-        <Input
-          type="date"
-          placeholder="Year"
-          value={toDateValue}
-          onChange={(value) => onChangeToDate(value)}
-          pattern="[0-9]{4}-[0-9]{2}"
-        />
-      </Filter>
-
-      {filters.map((section) => (
+      <FilterPeriod onChangePeriod={(period) => onChangePeriod(period)} />
+      {filtersCheckbox.map((section) => (
         <Filter key={section.id} name={section.name}>
           <Checkboxs section={section} />
         </Filter>
