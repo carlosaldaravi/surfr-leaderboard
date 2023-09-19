@@ -25,17 +25,15 @@ const getWeek = () => {
   const lastWeekDay = new Date(
     todayDate.getFullYear(),
     todayDate.getMonth(),
-    todayDate.getDate() + (6 - todayDay)
+    todayDate.getDate() + (7 - todayDay)
   );
 
-  const weekFormated = `From ${firstWeekDay.toLocaleDateString()} to ${lastWeekDay.toLocaleDateString()}`;
-  console.log("weekFormated: ", weekFormated);
+  const weekFormated = `${firstWeekDay.toLocaleDateString()} - ${lastWeekDay.toLocaleDateString()}`;
   return weekFormated;
 };
 const getMonth = () => {
   const today = new Date();
   const currentMonth = today.toLocaleString("en-US", { month: "long" });
-  console.log("currentMonth: ", currentMonth);
   return currentMonth;
 };
 
