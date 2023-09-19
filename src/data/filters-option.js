@@ -12,4 +12,23 @@ export const filtersOption = [
       { value: "custom", label: "Custom", description: "" },
     ],
   },
+  {
+    id: "gender",
+    name: "Gender",
+    options: [
+      { value: "all", label: "Both", description: "" },
+      { value: "male", label: "Male", description: "" },
+      { value: "female", label: "Female", description: "" },
+    ],
+  },
+  {
+    id: "boardType",
+    name: "Board Type",
+    options: [
+      { value: "all", label: "All", description: "" },
+      { value: "twintip", label: "Twintip", description: "" },
+      { value: "foil", label: "Foil", description: "" },
+      { value: "snow", label: "Snow", description: "" },
+    ],
+  },
 ];

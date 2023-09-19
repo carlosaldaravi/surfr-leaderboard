@@ -1,7 +1,5 @@
 import Input from "./UI/input";
 import Filter from "./filter";
-import Checkboxs from "./UI/checkboxs";
-import { filtersCheckbox } from "../data/filters-checkbox";
 import FilterPeriod from "./filter-period";
 
 const LeaderboardFiltersDesktop = ({
@@ -14,7 +12,7 @@ const LeaderboardFiltersDesktop = ({
   return (
     <form className="hidden lg:block">
       <h3 className="sr-only">Categories</h3>
-      <Filter name="Location">
+      {/* <Filter name="Location">
         <Input
           placeholder="Country"
           value={countryValue}
@@ -25,13 +23,8 @@ const LeaderboardFiltersDesktop = ({
           value={spotValue}
           onChange={(value) => onChangeSpotValue(value)}
         />
-      </Filter>
+      </Filter> */}
       <FilterPeriod onChangePeriod={(period) => onChangePeriod(period)} />
-      {filtersCheckbox.map((section) => (
-        <Filter key={section.id} name={section.name}>
-          <Checkboxs section={section} />
-        </Filter>
-      ))}
     </form>
   );
 };

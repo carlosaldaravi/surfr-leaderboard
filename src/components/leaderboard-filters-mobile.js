@@ -5,19 +5,16 @@ import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
 import Input from "./UI/input";
 import Filter from "./filter";
 import FilterLocation from "./filter-location";
-import { filtersCheckbox } from "../data/filters-checkbox";
+import FilterPeriod from "./filter-period";
 
 const LeaderboardFiltersMobile = ({
   mobileFiltersOpen,
   onCloseMobileFilters,
   countryValue,
   spotValue,
-  fromDateValue,
-  toDateValue,
-  onChangeFromDate,
-  onChangeToDate,
+  onChangePeriod,
   onChangeCountryValue,
-  onChangeSpotValue
+  onChangeSpotValue,
 }) => {
   return (
     <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -64,88 +61,15 @@ const LeaderboardFiltersMobile = ({
               {/* Filters */}
               <form className="mt-4 border-t border-gray-200">
                 <h3 className="sr-only">Categories</h3>
-                <FilterLocation
+                {/* <FilterLocation
                   countryValue={countryValue}
                   spotValue={spotValue}
                   onSetCountryValue={(value) => onChangeCountryValue(value)}
                   onSetSpotValue={(value) => onChangeSpotValue(value)}
+                /> */}
+                <FilterPeriod
+                  onChangePeriod={(period) => onChangePeriod(period)}
                 />
-                <Filter name="Dates">
-                  <div className="text-xl">From</div>
-                  <Input
-                    type="date"
-                    placeholder="Month"
-                    min="2020-01"
-                    value={fromDateValue}
-                    onChange={(value) => onChangeFromDate(value)}
-                  />
-                  <div className="text-xl">To</div>
-                  <Input
-                    type="date"
-                    placeholder="Year"
-                    value={toDateValue}
-                    onChange={(value) => onChangeToDate(value)}
-                    pattern="[0-9]{4}-[0-9]{2}"
-                  />
-                </Filter>
-
-                {filtersCheckbox.map((section) => (
-                  <Disclosure
-                    as="div"
-                    key={section.id}
-                    className="border-t border-gray-200 px-4 py-6"
-                  >
-                    {({ open }) => (
-                      <>
-                        <h3 className="-mx-2 -my-3 flow-root">
-                          <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
-                            <span className="font-medium text-text text-3xl">
-                              {section.name}
-                            </span>
-                            <span className="ml-6 flex items-center">
-                              {open ? (
-                                <MinusIcon
-                                  className={`h-5 w-5 font-black`}
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <PlusIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </span>
-                          </Disclosure.Button>
-                        </h3>
-                        <Disclosure.Panel className="pt-6">
-                          <div className="space-y-6">
-                            {section.options.map((option, optionIdx) => (
-                              <div
-                                key={option.value}
-                                className="flex items-center"
-                              >
-                                <input
-                                  id={`filter-mobile-${section.id}-${optionIdx}`}
-                                  name={`${section.id}[]`}
-                                  defaultValue={option.value}
-                                  type="checkbox"
-                                  defaultChecked={option.checked}
-                                  className="h-4 w-4 rounded border-gray-300 text-text focus:ring-primary"
-                                />
-                                <label
-                                  htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                  className="ml-3 min-w-0 flex-1 text-text text-2xl"
-                                >
-                                  {option.label}
-                                </label>
-                              </div>
-                            ))}
-                          </div>
-                        </Disclosure.Panel>
-                      </>
-                    )}
-                  </Disclosure>
-                ))}
               </form>
             </Dialog.Panel>
           </Transition.Child>

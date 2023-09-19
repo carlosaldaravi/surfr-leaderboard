@@ -8,6 +8,7 @@ const OptionGroup = ({ filter, onChangePeriod }) => {
 
   const handleOptionChange = (value) => {
     setSelectedOption(value);
+    if (value === "custom") return;
     onChangePeriod({
       type: "PERIOD",
       value,
@@ -15,7 +16,11 @@ const OptionGroup = ({ filter, onChangePeriod }) => {
   };
 
   const onChangeFromDate = (from) => {
-    setFromValue(from);
+    from > toValue ? setFromValue(toValue) : setFromValue(from);
+    if (toValue === "") {
+      setToValue(from);
+      return;
+    }
     onChangePeriod({
       type: "PERIOD",
       value: "custom",
@@ -26,6 +31,10 @@ const OptionGroup = ({ filter, onChangePeriod }) => {
 
   const onChangeToDate = (to) => {
     to < fromValue ? setToValue(fromValue) : setToValue(to);
+    if (fromValue === "") {
+      setToValue(to);
+      return;
+    }
     onChangePeriod({
       type: "PERIOD",
       value: "custom",

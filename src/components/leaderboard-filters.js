@@ -1,5 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
-import { getTodayDate } from "../helpers/dates";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import { SURFR_ACCESS_TOKEN, SURFR_URL } from "../env/constants";
 import Leaderboard from "./leaderboard";
 import LeaderboardFiltersMobile from "./leaderboard-filters-mobile";
@@ -19,8 +18,6 @@ const LeaderboardFilters = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [countryValue, setCountryValue] = useState("");
   const [spotValue, setSpotValue] = useState("");
-  const [fromDateValue, setFromDateValue] = useState("");
-  const [toDateValue, setToDateValue] = useState(getTodayDate());
   const [filtersState, dispatchFilters] = useReducer(
     filtersReducer,
     filtersInitialState
@@ -30,19 +27,7 @@ const LeaderboardFilters = () => {
     leaderboardInitialState
   );
 
-  useEffect(() => {}, [leaderboardState]);
-
-  useEffect(() => {
-    console.log("filtersState: ", filtersState);
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filtersState]);
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [leaderboardState.board, filtersState]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     dispatchLeaderboard({
       type: "LOADING",
       loading: true,
@@ -60,18 +45,20 @@ const LeaderboardFilters = () => {
           "&from=" + filtersState.period.from + "&to=" + filtersState.period.to;
       }
       const response = await fetch(url);
-      const data = await response.json();
-      dispatchLeaderboard({
-        type: "LEADERBOARD",
-        value: data,
-        board: leaderboardState.board,
-        lastBoard: leaderboardState.board,
-      });
+      if (response.ok) {
+        const data = await response.json();
+        dispatchLeaderboard({
+          type: "LEADERBOARD",
+          value: data,
+          board: leaderboardState.board,
+          lastBoard: leaderboardState.board,
+        });
+      }
       setLoading(false);
     } catch (error) {
       console.error("Error al obtener los datos:", error);
     }
-  };
+  }, [leaderboardState.board, filtersState]);
 
   const onChangePeriodHandler = (period) => {
     setLoading(true);
@@ -82,15 +69,16 @@ const LeaderboardFilters = () => {
     });
   };
 
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
     <div>
       <LeaderboardFiltersMobile
         mobileFiltersOpen={mobileFiltersOpen}
         onCloseMobileFilters={(value) => setMobileFiltersOpen(value)}
-        onChangeFromDate={(value) => setFromDateValue(value)}
-        onChangeToDate={(value) => setToDateValue(value)}
-        fromDateValue={fromDateValue}
-        toDateValue={toDateValue}
+        onChangePeriod={(period) => onChangePeriodHandler(period)}
         countryValue={countryValue}
         spotValue={spotValue}
         onChangeCountryValue={(value) => setCountryValue(value)}

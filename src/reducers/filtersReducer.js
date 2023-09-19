@@ -15,6 +15,17 @@ export const initialState = {
     from: "",
     to: getTodayDate(),
   },
+  gender: {
+    all: true,
+    male: false,
+    female: false
+  },
+  boardType: {
+    all: true,
+    twintip: false,
+    foil: false,
+    snow: false
+  },
 };
 export const filtersReducer = (state, action) => {
   if (action.type === "LOCATION") {
