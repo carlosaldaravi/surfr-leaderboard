@@ -78,9 +78,8 @@ const LeaderboardFilters = () => {
       <LeaderboardFiltersMobile
         mobileFiltersOpen={mobileFiltersOpen}
         onCloseMobileFilters={(value) => setMobileFiltersOpen(value)}
+        filtersState={filtersState}
         onChangePeriod={(period) => onChangePeriodHandler(period)}
-        countryValue={countryValue}
-        spotValue={spotValue}
         onChangeCountryValue={(value) => setCountryValue(value)}
         onChangeSpotValue={(value) => setSpotValue(value)}
       />
@@ -104,9 +103,8 @@ const LeaderboardFilters = () => {
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
             {/* Filters */}
             <LeaderboardFiltersDesktop
+              filtersState={filtersState}
               onChangePeriod={(period) => onChangePeriodHandler(period)}
-              countryValue={countryValue}
-              spotValue={spotValue}
               onChangeCountryValue={(value) => setCountryValue(value)}
               onChangeSpotValue={(value) => setSpotValue(value)}
             />

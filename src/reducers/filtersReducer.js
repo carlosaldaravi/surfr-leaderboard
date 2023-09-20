@@ -18,13 +18,13 @@ export const initialState = {
   gender: {
     all: true,
     male: false,
-    female: false
+    female: false,
   },
   boardType: {
     all: true,
     twintip: false,
     foil: false,
-    snow: false
+    snow: false,
   },
 };
 export const filtersReducer = (state, action) => {
@@ -40,6 +40,18 @@ export const filtersReducer = (state, action) => {
       period: action.period,
     };
   }
+  if (action.type === "GENDER") {
+    return {
+      ...state,
+      gender: action.gender,
+    };
+  }
+  if (action.type === "BOARD-TYPE") {
+    return {
+      ...state,
+      boardType: action.boardType,
+    };
+  }
   return {
     country: {
       value: "",
@@ -53,6 +65,17 @@ export const filtersReducer = (state, action) => {
       value: PERIOD_TYPES.alltime,
       from: "",
       to: "getTodayDate()",
+    },
+    gender: {
+      all: true,
+      male: false,
+      female: false,
+    },
+    boardType: {
+      all: true,
+      twintip: false,
+      foil: false,
+      snow: false,
     },
   };
 };

@@ -10,12 +10,15 @@ import FilterPeriod from "./filter-period";
 const LeaderboardFiltersMobile = ({
   mobileFiltersOpen,
   onCloseMobileFilters,
-  countryValue,
-  spotValue,
+  filtersState,
   onChangePeriod,
   onChangeCountryValue,
   onChangeSpotValue,
 }) => {
+  const onChangePeriodHandler = (period) => {
+    onChangePeriod(period);
+    onCloseMobileFilters(false);
+  };
   return (
     <Transition.Root show={mobileFiltersOpen} as={Fragment}>
       <Dialog
@@ -68,7 +71,8 @@ const LeaderboardFiltersMobile = ({
                   onSetSpotValue={(value) => onChangeSpotValue(value)}
                 /> */}
                 <FilterPeriod
-                  onChangePeriod={(period) => onChangePeriod(period)}
+                  filtersState={filtersState}
+                  onChangePeriod={(period) => onChangePeriodHandler(period)}
                 />
               </form>
             </Dialog.Panel>

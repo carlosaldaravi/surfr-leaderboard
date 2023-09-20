@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { filtersOption } from "../../data/filters-option";
 import Input from "./input";
 
-const OptionGroup = ({ filter, onChangePeriod }) => {
-  const [selectedOption, setSelectedOption] = useState("alltime");
-  const [fromValue, setFromValue] = useState("");
-  const [toValue, setToValue] = useState("");
+const OptionGroup = ({ filtersState, onChangePeriod }) => {
+  const filter = filtersOption.find((filter) => filter.id === "period");
 
   const handleOptionChange = (value) => {
-    setSelectedOption(value);
     if (value === "custom") return;
     onChangePeriod({
       type: "PERIOD",
@@ -16,30 +13,20 @@ const OptionGroup = ({ filter, onChangePeriod }) => {
   };
 
   const onChangeFromDate = (from) => {
-    from > toValue ? setFromValue(toValue) : setFromValue(from);
-    if (toValue === "") {
-      setToValue(from);
-      return;
-    }
     onChangePeriod({
       type: "PERIOD",
       value: "custom",
-      from,
-      to: toValue,
+      from: from < filtersState.period.to ? from : filtersState.period.to,
+      to: filtersState.period.to,
     });
   };
 
   const onChangeToDate = (to) => {
-    to < fromValue ? setToValue(fromValue) : setToValue(to);
-    if (fromValue === "") {
-      setToValue(to);
-      return;
-    }
     onChangePeriod({
       type: "PERIOD",
       value: "custom",
-      from: fromValue,
-      to: to,
+      from: filtersState.period.from,
+      to: to > filtersState.period.from ? to : filtersState.period.from,
     });
   };
 
@@ -55,7 +42,7 @@ const OptionGroup = ({ filter, onChangePeriod }) => {
                 aria-describedby={`${option.value}-description`}
                 name="option"
                 type="radio"
-                defaultChecked={option.value === "alltime"}
+                checked={filtersState.period.value === option.value}
                 onChange={() => handleOptionChange(option.value)}
                 className="h-4 w-4 border-gray-300 text-secondary focus:ring-primary"
               />
@@ -70,25 +57,23 @@ const OptionGroup = ({ filter, onChangePeriod }) => {
                   {option.description}
                 </p>
               ) : (
-                selectedOption === "custom" && (
-                  <>
-                    <div className="text-xl mt-2">From</div>
-                    <Input
-                      type="date"
-                      placeholder="Month"
-                      value={fromValue}
-                      onChange={(value) => onChangeFromDate(value)}
-                    />
-                    <div className="text-xl">To</div>
-                    <Input
-                      type="date"
-                      placeholder="Year"
-                      value={toValue}
-                      onChange={(value) => onChangeToDate(value)}
-                      pattern="[0-9]{4}-[0-9]{2}"
-                    />
-                  </>
-                )
+                <>
+                  <div className="text-xl mt-2">From</div>
+                  <Input
+                    type="date"
+                    placeholder="Month"
+                    value={filtersState.period.from}
+                    onChange={(value) => onChangeFromDate(value)}
+                  />
+                  <div className="text-xl">To</div>
+                  <Input
+                    type="date"
+                    placeholder="Year"
+                    value={filtersState.period.to}
+                    onChange={(value) => onChangeToDate(value)}
+                    pattern="[0-9]{4}-[0-9]{2}"
+                  />
+                </>
               )}
             </label>
           </div>

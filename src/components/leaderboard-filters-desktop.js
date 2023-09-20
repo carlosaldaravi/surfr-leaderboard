@@ -3,8 +3,7 @@ import Filter from "./filter";
 import FilterPeriod from "./filter-period";
 
 const LeaderboardFiltersDesktop = ({
-  countryValue,
-  spotValue,
+  filtersState,
   onChangePeriod,
   onChangeCountryValue,
   onChangeSpotValue,
@@ -24,7 +23,7 @@ const LeaderboardFiltersDesktop = ({
           onChange={(value) => onChangeSpotValue(value)}
         />
       </Filter> */}
-      <FilterPeriod onChangePeriod={(period) => onChangePeriod(period)} />
+      <FilterPeriod filtersState={filtersState} onChangePeriod={(period) => onChangePeriod(period)} />
     </form>
   );
 };
