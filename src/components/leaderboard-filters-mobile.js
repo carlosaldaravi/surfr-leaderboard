@@ -6,17 +6,23 @@ import Input from "./UI/input";
 import Filter from "./filter";
 import FilterLocation from "./filter-location";
 import FilterPeriod from "./filter-period";
+import FilterGender from "./filter-gender";
 
 const LeaderboardFiltersMobile = ({
   mobileFiltersOpen,
   onCloseMobileFilters,
   filtersState,
   onChangePeriod,
+  onChangeGender,
   onChangeCountryValue,
   onChangeSpotValue,
 }) => {
   const onChangePeriodHandler = (period) => {
     onChangePeriod(period);
+    onCloseMobileFilters(false);
+  };
+  const onChangeGenderHandler = (gender) => {
+    onChangeGender(gender);
     onCloseMobileFilters(false);
   };
   return (
@@ -73,6 +79,10 @@ const LeaderboardFiltersMobile = ({
                 <FilterPeriod
                   filtersState={filtersState}
                   onChangePeriod={(period) => onChangePeriodHandler(period)}
+                />
+                <FilterGender
+                  filtersState={filtersState}
+                  onChangeGender={(gender) => onChangeGenderHandler(gender)}
                 />
               </form>
             </Dialog.Panel>

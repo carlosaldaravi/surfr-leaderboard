@@ -1,4 +1,5 @@
 import { getDay, getWeek, getMonth } from "../helpers/dates";
+import { GENDER_TYPES } from "../types/gender";
 
 export const filtersOption = [
   {
@@ -16,9 +17,9 @@ export const filtersOption = [
     id: "gender",
     name: "Gender",
     options: [
-      { value: "all", label: "Both", description: "" },
-      { value: "male", label: "Male", description: "" },
-      { value: "female", label: "Female", description: "" },
+      { value: GENDER_TYPES.both, label: "Both", description: "" },
+      { value: GENDER_TYPES.male, label: "Male", description: "" },
+      { value: GENDER_TYPES.female, label: "Female", description: "" },
     ],
   },
   {

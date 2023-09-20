@@ -1,4 +1,5 @@
 import { getTodayDate } from "../helpers/dates";
+import { GENDER_TYPES } from "../types/gender";
 import { PERIOD_TYPES } from "../types/period";
 
 export const initialState = {
@@ -16,9 +17,7 @@ export const initialState = {
     to: getTodayDate(),
   },
   gender: {
-    all: true,
-    male: false,
-    female: false,
+    value: GENDER_TYPES.both
   },
   boardType: {
     all: true,
@@ -67,9 +66,7 @@ export const filtersReducer = (state, action) => {
       to: "getTodayDate()",
     },
     gender: {
-      all: true,
-      male: false,
-      female: false,
+      value: ""
     },
     boardType: {
       all: true,

@@ -1,10 +1,12 @@
 import Input from "./UI/input";
 import Filter from "./filter";
+import FilterGender from "./filter-gender";
 import FilterPeriod from "./filter-period";
 
 const LeaderboardFiltersDesktop = ({
   filtersState,
   onChangePeriod,
+  onChangeGender,
   onChangeCountryValue,
   onChangeSpotValue,
 }) => {
@@ -23,7 +25,14 @@ const LeaderboardFiltersDesktop = ({
           onChange={(value) => onChangeSpotValue(value)}
         />
       </Filter> */}
-      <FilterPeriod filtersState={filtersState} onChangePeriod={(period) => onChangePeriod(period)} />
+      <FilterPeriod
+        filtersState={filtersState}
+        onChangePeriod={(period) => onChangePeriod(period)}
+      />
+      <FilterGender
+        filtersState={filtersState}
+        onChangeGender={(gender) => onChangeGender(gender)}
+      />
     </form>
   );
 };

@@ -44,6 +44,9 @@ const LeaderboardFilters = () => {
         url +=
           "&from=" + filtersState.period.from + "&to=" + filtersState.period.to;
       }
+      if (filtersState.gender.value !== "both") {
+        url += "&gender=" + filtersState.gender.value;
+      }
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
@@ -65,7 +68,15 @@ const LeaderboardFilters = () => {
     if (period === "custom") return;
     dispatchFilters({
       type: "PERIOD",
-      period: period,
+      period,
+    });
+  };
+
+  const onChangeGenderHandler = (gender) => {
+    setLoading(true);
+    dispatchFilters({
+      type: "GENDER",
+      gender,
     });
   };
 
@@ -80,6 +91,7 @@ const LeaderboardFilters = () => {
         onCloseMobileFilters={(value) => setMobileFiltersOpen(value)}
         filtersState={filtersState}
         onChangePeriod={(period) => onChangePeriodHandler(period)}
+        onChangeGender={(gender) => onChangeGenderHandler(gender)}
         onChangeCountryValue={(value) => setCountryValue(value)}
         onChangeSpotValue={(value) => setSpotValue(value)}
       />
@@ -105,6 +117,7 @@ const LeaderboardFilters = () => {
             <LeaderboardFiltersDesktop
               filtersState={filtersState}
               onChangePeriod={(period) => onChangePeriodHandler(period)}
+              onChangeGender={(gender) => onChangeGenderHandler(gender)}
               onChangeCountryValue={(value) => setCountryValue(value)}
               onChangeSpotValue={(value) => setSpotValue(value)}
             />
