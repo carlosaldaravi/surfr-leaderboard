@@ -3,7 +3,7 @@ import { SURFR_ACCESS_TOKEN, SURFR_URL } from "../env/constants";
 import Leaderboard from "./leaderboard";
 import LeaderboardFiltersMobile from "./leaderboard-filters-mobile";
 import LeaderboardFiltersDesktop from "./leaderboard-filters-desktop";
-import LeaderboardSortOptions from "./leaderboard-sort-options";
+import LeaderboardBoardOptions from "./leaderboard-board-options";
 import {
   initialState as leaderboardInitialState,
   leaderboardReducer,
@@ -118,7 +118,7 @@ const LeaderboardFilters = () => {
       <main className="mx-auto min-w-[340px] max-w-4xl lg:max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
           <h2 className="font-bold tracking-tight text-text">Leaderboard</h2>
-          <LeaderboardSortOptions
+          <LeaderboardBoardOptions
             sortOptionSelected={leaderboardState.board}
             onChangeBoard={(value) =>
               dispatchLeaderboard({

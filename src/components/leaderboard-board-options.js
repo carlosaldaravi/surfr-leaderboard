@@ -7,7 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const LeaderboardSortOptions = ({
+const LeaderboardBoardOptions = ({
   onOpenMobileFilters,
   sortOptionSelected,
   onChangeBoard,
@@ -72,4 +72,4 @@ const LeaderboardSortOptions = ({
   );
 };
 
-export default LeaderboardSortOptions;
+export default LeaderboardBoardOptions;

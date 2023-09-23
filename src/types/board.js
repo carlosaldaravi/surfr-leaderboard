@@ -1,4 +1,4 @@
-export const SORT_TYPES = {
+export const BOARD_TYPES = {
     height: "height",
     airtime: "airtime",
     distance: "distance"

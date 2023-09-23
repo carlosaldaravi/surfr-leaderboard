@@ -1,6 +1,6 @@
 import { TrophyIcon } from "@heroicons/react/24/outline";
 import { isPodium, trophyClassColor } from "../helpers/leaderboard";
-import { SORT_TYPES } from "../types/sort";
+import { BOARD_TYPES } from "../types/board";
 
 const LeaderboardRider = ({ rider, leaderboardSelected, position }) => {
   return (
@@ -13,15 +13,14 @@ const LeaderboardRider = ({ rider, leaderboardSelected, position }) => {
         <div className="font-extralight">{rider.user.name}</div>
         {isPodium(position) && (
           <span>
-            <TrophyIcon
-              className={`h-8 w-8 ${trophyClassColor(position)}`}
-            />
+            <TrophyIcon className={`h-8 w-8 ${trophyClassColor(position)}`} />
           </span>
         )}
       </div>
 
       <div className="text-end font-light">
-        {rider.value.toFixed(2)} {leaderboardSelected === SORT_TYPES.airtime ? "s" : "m"}
+        {rider.value.toFixed(2)}{" "}
+        {leaderboardSelected === BOARD_TYPES.airtime ? "s" : "m"}
       </div>
     </li>
   );
