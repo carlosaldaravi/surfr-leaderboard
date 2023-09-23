@@ -2,7 +2,7 @@ import classes from "./header.module.css";
 
 const Header = () => {
   return (
-    <header className={`mb-24 sm:mb-44 lg:mb-64 ${classes.top}`}>
+    <header className={`mb-20 sm:mb-28 lg:mb-44 ${classes.top}`}>
       <div className="h-36"></div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
