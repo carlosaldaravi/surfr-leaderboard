@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import FilterPeriod from "./period/filter-period";
-import FilterGender from "./gender/filter-gender";
+import FilterPeriod from "../period/filter-period";
+import FilterGender from "../gender/filter-gender";
 
 const FiltersMobile = ({
   mobileFiltersOpen,
@@ -31,18 +31,6 @@ const FiltersMobile = ({
         className="relative z-40 lg:hidden"
         onClose={onCloseMobileFilters}
       >
-        <Transition.Child
-          as={Fragment}
-          enter="transition-opacity ease-linear duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition-opacity ease-linear duration-300"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-black bg-opacity-25" />
-        </Transition.Child>
-
         <div className="fixed inset-0 z-40 flex">
           <Transition.Child
             as={Fragment}
