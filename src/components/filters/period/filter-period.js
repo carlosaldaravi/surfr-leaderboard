@@ -1,14 +1,14 @@
 import FilterPeriodOptions from "./filter-period-options";
-import Filter from "./filter";
+import FilterDisclosure from "../filter-disclosure";
 
 const FilterPeriod = ({ filtersState, onChangePeriod }) => {
   return (
-    <Filter name="Period">
+    <FilterDisclosure name="Period">
       <FilterPeriodOptions
         filtersState={filtersState}
         onChangePeriod={(period) => onChangePeriod(period)}
       />
-    </Filter>
+    </FilterDisclosure>
   );
 };
 

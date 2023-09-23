@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
 import { SURFR_ACCESS_TOKEN, SURFR_URL } from "../env/constants";
 import Leaderboard from "./leaderboard/leaderboard";
-import FilterBoardOptions from "./filters/filter-board-options";
+import FilterBoardOptions from "./filters/board/filter-board-options";
 import FiltersMobile from "./filters/filters-mobile";
 import FiltersDesktop from "./filters/filters-desktop";
 import {

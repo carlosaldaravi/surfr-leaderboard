@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 
-const FilterBody = ({ children }) => {
+const FilterDisclosureBody = ({ children }) => {
   return (
     <Disclosure.Panel className="pt-6">
       <div className="space-y-4">
@@ -10,4 +10,4 @@ const FilterBody = ({ children }) => {
   );
 };
 
-export default FilterBody;
+export default FilterDisclosureBody;

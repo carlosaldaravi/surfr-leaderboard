@@ -1,7 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
-const FilterTitle = ({ title, open }) => {
+const FilterDisclosureTitle = ({ title, open }) => {
   return (
     <h3 className="-my-3 flow-root">
       <Disclosure.Button className="flex w-full items-center justify-between py-3 text-sm text-text hover:text-gray-500">
@@ -20,4 +20,4 @@ const FilterTitle = ({ title, open }) => {
   );
 };
 
-export default FilterTitle;
+export default FilterDisclosureTitle;

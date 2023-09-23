@@ -1,4 +1,4 @@
-import { filtersOption } from "../../data/filters-option";
+import { filtersOption } from "../../../data/filters-option";
 
 const FilterGenderOptions = ({ filtersState, onChangeGender }) => {
   const filter = filtersOption.find((filter) => filter.id === "gender");

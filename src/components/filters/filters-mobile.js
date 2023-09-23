@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import FilterPeriod from "./filter-period";
-import FilterGender from "./filter-gender";
+import FilterPeriod from "./period/filter-period";
+import FilterGender from "./gender/filter-gender";
 
 const FiltersMobile = ({
   mobileFiltersOpen,

@@ -1,5 +1,5 @@
-import { filtersOption } from "../../data/filters-option";
-import Input from "../UI/input";
+import { filtersOption } from "../../../data/filters-option";
+import Input from "../../UI/input";
 
 const FilterPeriodOptions = ({ filtersState, onChangePeriod }) => {
   const filter = filtersOption.find((filter) => filter.id === "period");

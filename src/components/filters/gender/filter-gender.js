@@ -1,14 +1,14 @@
-import Filter from "./filter";
+import FilterDisclosure from "../filter-disclosure";
 import FilterGenderOptions from "./filter-gender-options";
 
 const FilterGender = ({ filtersState, onChangeGender }) => {
   return (
-    <Filter name="Gender">
+    <FilterDisclosure name="Gender">
       <FilterGenderOptions
         filtersState={filtersState}
         onChangeGender={(gender) => onChangeGender(gender)}
       />
-    </Filter>
+    </FilterDisclosure>
   );
 };
 
