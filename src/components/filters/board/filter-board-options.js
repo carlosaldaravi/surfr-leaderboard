@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
-import { sortOptions } from "../../../data/sort-options";
+import { boardOptions } from "../../../data/board-options";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -37,7 +37,7 @@ const FilterBoardOptions = ({
         >
           <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
             <ul className="py-1">
-              {sortOptions.map((option) => (
+              {boardOptions.map((option) => (
                 <Menu.Item key={option.name}>
                   {({ active }) => (
                     <li
