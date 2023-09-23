@@ -1,7 +1,7 @@
 import { filtersOption } from "../../data/filters-option";
-import Input from "./input";
+import Input from "../UI/input";
 
-const OptionGroup = ({ filtersState, onChangePeriod }) => {
+const FilterPeriodOptions = ({ filtersState, onChangePeriod }) => {
   const filter = filtersOption.find((filter) => filter.id === "period");
 
   const handleOptionChange = (value) => {
@@ -82,4 +82,4 @@ const OptionGroup = ({ filtersState, onChangePeriod }) => {
     </fieldset>
   );
 };
-export default OptionGroup;
+export default FilterPeriodOptions;

@@ -93,6 +93,13 @@ const LeaderboardContainer = () => {
       gender,
     });
   };
+  const onChangeLocationHandler = (location) => {
+    setLoading(true);
+    dispatchFilters({
+      type: "LOCATION",
+      location,
+    });
+  };
   const setPageHangler = (newPage) => {
     if (leaderboardData[leaderboardState.board][page + newPage]) {
       setPage((prevPage) => prevPage + newPage);
@@ -111,8 +118,7 @@ const LeaderboardContainer = () => {
         filtersState={filtersState}
         onChangePeriod={(period) => onChangePeriodHandler(period)}
         onChangeGender={(gender) => onChangeGenderHandler(gender)}
-        // onChangeCountryValue={(value) => setCountryValue(value)}
-        // onChangeSpotValue={(value) => setSpotValue(value)}
+        onChangeLocation={(value) => onChangeLocationHandler(value)}
       />
 
       <main className="mx-auto min-w-[340px] max-w-4xl lg:max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -137,8 +143,7 @@ const LeaderboardContainer = () => {
               filtersState={filtersState}
               onChangePeriod={(period) => onChangePeriodHandler(period)}
               onChangeGender={(gender) => onChangeGenderHandler(gender)}
-              // onChangeCountryValue={(value) => setCountryValue(value)}
-              // onChangeSpotValue={(value) => setSpotValue(value)}
+              onChangeLocation={(value) => onChangeLocationHandler(value)}
             />
 
             {/* Leaderboard grid */}

@@ -1,10 +1,10 @@
-import OptionGroup from "../UI/option-group";
+import FilterPeriodOptions from "./filter-period-options";
 import Filter from "./filter";
 
 const FilterPeriod = ({ filtersState, onChangePeriod }) => {
   return (
     <Filter name="Period">
-      <OptionGroup
+      <FilterPeriodOptions
         filtersState={filtersState}
         onChangePeriod={(period) => onChangePeriod(period)}
       />

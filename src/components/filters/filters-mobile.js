@@ -1,10 +1,6 @@
 import { Fragment } from "react";
-import { Dialog, Disclosure, Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
-import Input from "../UI/input";
-import Filter from "./filter";
-import FilterLocation from "./filter-location";
 import FilterPeriod from "./filter-period";
 import FilterGender from "./filter-gender";
 
@@ -14,8 +10,7 @@ const FiltersMobile = ({
   filtersState,
   onChangePeriod,
   onChangeGender,
-  onChangeCountryValue,
-  onChangeSpotValue,
+  onChangeLocation,
 }) => {
   const onChangePeriodHandler = (period) => {
     onChangePeriod(period);
@@ -23,6 +18,10 @@ const FiltersMobile = ({
   };
   const onChangeGenderHandler = (gender) => {
     onChangeGender(gender);
+    onCloseMobileFilters(false);
+  };
+  const onChangeLocationHandler = (location) => {
+    onChangeGender(location);
     onCloseMobileFilters(false);
   };
   return (
@@ -71,10 +70,8 @@ const FiltersMobile = ({
               <form className="mt-4 border-t border-gray-200">
                 <h3 className="sr-only">Categories</h3>
                 {/* <FilterLocation
-                  countryValue={countryValue}
-                  spotValue={spotValue}
-                  onSetCountryValue={(value) => onChangeCountryValue(value)}
-                  onSetSpotValue={(value) => onChangeSpotValue(value)}
+                  filtersState={filtersState}
+                  onChangeLocation={(location) => onChangeLocationHandler(location)}
                 /> */}
                 <FilterPeriod
                   filtersState={filtersState}
