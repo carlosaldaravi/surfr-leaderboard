@@ -21,7 +21,7 @@ const FilterGenderOptions = ({ filtersState, onChangeGender }) => {
               <input
                 id={option.value}
                 aria-describedby={`${option.value}-description`}
-                name="option"
+                name={`option-${option.value}`}
                 type="radio"
                 checked={filtersState.gender.value === option.value}
                 onChange={() => handleOptionChange(option.value)}
