@@ -1,4 +1,4 @@
-import surfrLogo from "../assets/imgs/surfr.png";
+import surfrLogo from "../../assets/imgs/surfr.png";
 
 const LeaderboardHeaderImage = () => {
   return (

@@ -1,9 +1,9 @@
-import Input from "./UI/input";
+import Input from "../UI/input";
 import Filter from "./filter";
 import FilterGender from "./filter-gender";
 import FilterPeriod from "./filter-period";
 
-const LeaderboardFiltersDesktop = ({
+const FiltersDesktop = ({
   filtersState,
   onChangePeriod,
   onChangeGender,
@@ -37,4 +37,4 @@ const LeaderboardFiltersDesktop = ({
   );
 };
 
-export default LeaderboardFiltersDesktop;
+export default FiltersDesktop;

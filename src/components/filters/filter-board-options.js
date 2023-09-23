@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
-import { sortOptions } from "../data/sort-options";
+import { sortOptions } from "../../data/sort-options";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const LeaderboardBoardOptions = ({
+const FilterBoardOptions = ({
   onOpenMobileFilters,
   sortOptionSelected,
   onChangeBoard,
@@ -72,4 +72,4 @@ const LeaderboardBoardOptions = ({
   );
 };
 
-export default LeaderboardBoardOptions;
+export default FilterBoardOptions;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import LeaderboardRider from "./leaderboard-rider";
-import Pagination from "./UI/pagination";
+import Pagination from "../UI/pagination";
 
 const LeaderboardBody = ({ leaderboard, page, onChangePage, loading }) => {
   const [actualLeaderboard, setActualLeaderboard] = useState([]);

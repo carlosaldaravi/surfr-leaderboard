@@ -1,6 +1,6 @@
 import { TrophyIcon } from "@heroicons/react/24/outline";
-import { isPodium, trophyClassColor } from "../helpers/leaderboard";
-import { BOARD_TYPES } from "../types/board";
+import { isPodium, trophyClassColor } from "../../helpers/leaderboard";
+import { BOARD_TYPES } from "../../types/board";
 
 const LeaderboardRider = ({ rider, leaderboardSelected, position }) => {
   return (

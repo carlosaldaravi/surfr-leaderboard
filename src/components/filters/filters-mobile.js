@@ -2,13 +2,13 @@ import { Fragment } from "react";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
-import Input from "./UI/input";
+import Input from "../UI/input";
 import Filter from "./filter";
 import FilterLocation from "./filter-location";
 import FilterPeriod from "./filter-period";
 import FilterGender from "./filter-gender";
 
-const LeaderboardFiltersMobile = ({
+const FiltersMobile = ({
   mobileFiltersOpen,
   onCloseMobileFilters,
   filtersState,
@@ -93,4 +93,4 @@ const LeaderboardFiltersMobile = ({
   );
 };
 
-export default LeaderboardFiltersMobile;
+export default FiltersMobile;

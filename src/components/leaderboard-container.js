@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
 import { SURFR_ACCESS_TOKEN, SURFR_URL } from "../env/constants";
-import Leaderboard from "./leaderboard";
-import LeaderboardFiltersMobile from "./leaderboard-filters-mobile";
-import LeaderboardFiltersDesktop from "./leaderboard-filters-desktop";
-import LeaderboardBoardOptions from "./leaderboard-board-options";
+import Leaderboard from "./leaderboard/leaderboard";
+import FilterBoardOptions from "./filters/filter-board-options";
+import FiltersMobile from "./filters/filters-mobile";
+import FiltersDesktop from "./filters/filters-desktop";
 import {
   initialState as leaderboardInitialState,
   leaderboardReducer,
@@ -14,7 +14,7 @@ import {
 } from "../reducers/filtersReducer";
 import { leaderboardData } from "../data/leaderboard";
 
-const LeaderboardFilters = () => {
+const LeaderboardContainer = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -105,7 +105,7 @@ const LeaderboardFilters = () => {
 
   return (
     <div>
-      <LeaderboardFiltersMobile
+      <FiltersMobile
         mobileFiltersOpen={mobileFiltersOpen}
         onCloseMobileFilters={(value) => setMobileFiltersOpen(value)}
         filtersState={filtersState}
@@ -118,7 +118,7 @@ const LeaderboardFilters = () => {
       <main className="mx-auto min-w-[340px] max-w-4xl lg:max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
           <h2 className="font-bold tracking-tight text-text">Leaderboard</h2>
-          <LeaderboardBoardOptions
+          <FilterBoardOptions
             sortOptionSelected={leaderboardState.board}
             onChangeBoard={(value) =>
               dispatchLeaderboard({
@@ -133,7 +133,7 @@ const LeaderboardFilters = () => {
         <section className="pb-24 pt-6">
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
             {/* Filters */}
-            <LeaderboardFiltersDesktop
+            <FiltersDesktop
               filtersState={filtersState}
               onChangePeriod={(period) => onChangePeriodHandler(period)}
               onChangeGender={(gender) => onChangeGenderHandler(gender)}
@@ -157,4 +157,4 @@ const LeaderboardFilters = () => {
   );
 };
 
-export default LeaderboardFilters;
+export default LeaderboardContainer;

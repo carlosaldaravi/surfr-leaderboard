@@ -1,11 +1,11 @@
 import Header from "./components/layout/header";
-import LeaderboardFilters from "./components/leaderboard-filters";
+import LeaderboardContainer from "./components/leaderboard-container";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <LeaderboardFilters />
+      <LeaderboardContainer />
     </div>
   );
 }
