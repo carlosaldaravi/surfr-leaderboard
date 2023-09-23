@@ -12,12 +12,12 @@ import {
   initialState as filtersInitialState,
   filtersReducer,
 } from "../reducers/filtersReducer";
+import { leaderboardData } from "../data/leaderboard";
 
 const LeaderboardFilters = () => {
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(0);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [countryValue, setCountryValue] = useState("");
-  const [spotValue, setSpotValue] = useState("");
   const [filtersState, dispatchFilters] = useReducer(
     filtersReducer,
     filtersInitialState
@@ -26,6 +26,10 @@ const LeaderboardFilters = () => {
     leaderboardReducer,
     leaderboardInitialState
   );
+
+  useEffect(() => {
+    console.log("page: ", page);
+  }, [page]);
 
   const fetchData = useCallback(async () => {
     dispatchLeaderboard({
@@ -38,7 +42,9 @@ const LeaderboardFilters = () => {
         leaderboardState.board +
         "/" +
         filtersState.period.value +
-        "/0?accesstoken=" +
+        "/" +
+        page +
+        "?accesstoken=" +
         SURFR_ACCESS_TOKEN;
       if (filtersState.period.value === "custom") {
         url +=
@@ -59,9 +65,17 @@ const LeaderboardFilters = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.error("Error al obtener los datos:", error);
+      const data = leaderboardData[leaderboardState.board][page];
+      console.log("data: ", data);
+      dispatchLeaderboard({
+        type: "LEADERBOARD",
+        value: data,
+        board: leaderboardState.board,
+        lastBoard: leaderboardState.board,
+      });
+      // console.error("Error al obtener los datos:", error);
     }
-  }, [leaderboardState.board, filtersState]);
+  }, [leaderboardState.board, filtersState, page]);
 
   const onChangePeriodHandler = (period) => {
     setLoading(true);
@@ -79,6 +93,11 @@ const LeaderboardFilters = () => {
       gender,
     });
   };
+  const setPageHangler = (newPage) => {
+    if (leaderboardData[leaderboardState.board][page + newPage]) {
+      setPage((prevPage) => prevPage + newPage);
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -92,8 +111,8 @@ const LeaderboardFilters = () => {
         filtersState={filtersState}
         onChangePeriod={(period) => onChangePeriodHandler(period)}
         onChangeGender={(gender) => onChangeGenderHandler(gender)}
-        onChangeCountryValue={(value) => setCountryValue(value)}
-        onChangeSpotValue={(value) => setSpotValue(value)}
+        // onChangeCountryValue={(value) => setCountryValue(value)}
+        // onChangeSpotValue={(value) => setSpotValue(value)}
       />
 
       <main className="mx-auto min-w-[340px] max-w-4xl lg:max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -118,13 +137,18 @@ const LeaderboardFilters = () => {
               filtersState={filtersState}
               onChangePeriod={(period) => onChangePeriodHandler(period)}
               onChangeGender={(gender) => onChangeGenderHandler(gender)}
-              onChangeCountryValue={(value) => setCountryValue(value)}
-              onChangeSpotValue={(value) => setSpotValue(value)}
+              // onChangeCountryValue={(value) => setCountryValue(value)}
+              // onChangeSpotValue={(value) => setSpotValue(value)}
             />
 
             {/* Leaderboard grid */}
             <div className="lg:col-span-3">
-              <Leaderboard leaderboard={leaderboardState} loading={loading} />
+              <Leaderboard
+                leaderboard={leaderboardState}
+                page={page}
+                onChangePage={(newPage) => setPageHangler(newPage)}
+                loading={loading}
+              />
             </div>
           </div>
         </section>
