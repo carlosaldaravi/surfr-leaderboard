@@ -27,10 +27,6 @@ const LeaderboardContainer = () => {
     leaderboardInitialState
   );
 
-  useEffect(() => {
-    console.log("page: ", page);
-  }, [page]);
-
   const fetchData = useCallback(async () => {
     dispatchLeaderboard({
       type: "LOADING",
@@ -79,6 +75,7 @@ const LeaderboardContainer = () => {
 
   const onChangePeriodHandler = (period) => {
     setLoading(true);
+    setPage(0);
     if (period === "custom") return;
     dispatchFilters({
       type: "PERIOD",
@@ -88,6 +85,7 @@ const LeaderboardContainer = () => {
 
   const onChangeGenderHandler = (gender) => {
     setLoading(true);
+    setPage(0);
     dispatchFilters({
       type: "GENDER",
       gender,
@@ -95,6 +93,7 @@ const LeaderboardContainer = () => {
   };
   const onChangeLocationHandler = (location) => {
     setLoading(true);
+    setPage(0);
     dispatchFilters({
       type: "LOCATION",
       location,
