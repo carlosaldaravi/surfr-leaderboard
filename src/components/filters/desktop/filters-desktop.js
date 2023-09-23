@@ -1,5 +1,5 @@
-import FilterGender from "./gender/filter-gender";
-import FilterPeriod from "./period/filter-period";
+import FilterGender from "../gender/filter-gender";
+import FilterPeriod from "../period/filter-period";
 
 const FiltersDesktop = ({
   filtersState,

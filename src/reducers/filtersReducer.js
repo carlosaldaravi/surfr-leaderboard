@@ -63,7 +63,7 @@ export const filtersReducer = (state, action) => {
     period: {
       value: PERIOD_TYPES.alltime,
       from: "",
-      to: "getTodayDate()",
+      to: getTodayDate(),
     },
     gender: {
       value: ""

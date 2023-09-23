@@ -10,6 +10,7 @@ const FilterDisclosure = ({ name, children }) => {
       ref={ref}
       as="div"
       className="border-t border-gray-200 px-4 py-6"
+      defaultOpen={true}
     >
       {({ open }) => (
         <>
