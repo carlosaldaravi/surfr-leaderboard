@@ -17,10 +17,10 @@ const FilterBoardOptions = ({
       {/* Sort menu */}
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="group inline-flex justify-center text-xl font-medium text-text hover:text-gray-900">
+          <Menu.Button className="group inline-flex justify-center text-3xl font-medium text-text sm:hover:text-gray-900">
             Sort
             <ChevronDownIcon
-              className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+              className="-mr-1 ml-1 h-8 w-8 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
               aria-hidden="true"
             />
           </Menu.Button>
@@ -66,7 +66,7 @@ const FilterBoardOptions = ({
         onClick={() => onOpenMobileFilters(true)}
       >
         <span className="sr-only">Filters</span>
-        <FunnelIcon className="h-5 w-5" aria-hidden="true" />
+        <FunnelIcon className="h-8 w-8" aria-hidden="true" />
       </button>
     </div>
   );
